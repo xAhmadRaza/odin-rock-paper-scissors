@@ -32,27 +32,30 @@ const playRound = (playerSelection, computerSelection) => {
   const computerSelectionCaseIns = computerSelection.toLowerCase();
 
   if (
-    playerSelectionCaseIns === "rock" &&
-    computerSelectionCaseIns === "scissors"
+    (playerSelectionCaseIns === "rock" &&
+      computerSelectionCaseIns === "scissors") ||
+    (playerSelectionCaseIns === "scissors" &&
+      computerSelectionCaseIns === "paper") ||
+    (playerSelectionCaseIns === "paper" && computerSelectionCaseIns === "rock")
   ) {
     return `You Win! ${playerSelectionCaseIns} beats ${computerSelectionCaseIns} user entered ${playerSelectionCaseIns} and computer entered ${computerSelectionCaseIns}`;
   }
-  if (
-    playerSelectionCaseIns === "scissors" &&
-    computerSelectionCaseIns === "paper"
-  ) {
-    return `You Win! ${playerSelectionCaseIns} beats ${computerSelectionCaseIns} user entered ${playerSelectionCaseIns} and computer entered ${computerSelectionCaseIns}`;
-  }
-  if (
-    playerSelectionCaseIns === "paper" &&
-    computerSelectionCaseIns === "rock"
-  ) {
-    return `You Win! ${playerSelectionCaseIns} beats ${computerSelectionCaseIns} user entered ${playerSelectionCaseIns} and computer entered ${computerSelectionCaseIns}`;
-  }
+  // if (
+  //   playerSelectionCaseIns === "scissors" &&
+  //   computerSelectionCaseIns === "paper"
+  // ) {
+  //   return `You Win! ${playerSelectionCaseIns} beats ${computerSelectionCaseIns} user entered ${playerSelectionCaseIns} and computer entered ${computerSelectionCaseIns}`;
+  // }
+  // if (
+  //   playerSelectionCaseIns === "paper" &&
+  //   computerSelectionCaseIns === "rock"
+  // ) {
+  //   return `You Win! ${playerSelectionCaseIns} beats ${computerSelectionCaseIns} user entered ${playerSelectionCaseIns} and computer entered ${computerSelectionCaseIns}`;
+  // }
   if (playerSelectionCaseIns === computerSelectionCaseIns) {
-    return `Draw`;
+    return `TIE`;
   } else {
-    return `You lose! ${computerSelectionCaseIns} beats ${playerSelectionCaseIns} user entered ${playerSelectionCaseIns} and computer entered ${computerSelectionCaseIns}`;
+    return `You lose! computer ${computerSelectionCaseIns} beats (player) ${playerSelectionCaseIns} user entered ${playerSelectionCaseIns} and computer entered ${computerSelectionCaseIns}`;
   }
 };
 
@@ -71,18 +74,31 @@ const game = () => {
       const result = playRound(userInput, getComputerChoice());
       if (result.startsWith("You Win!")) {
         usersScore++;
+        console.log(result);
       }
       if (result.startsWith("You lose!")) {
         computerScore++;
+        console.log(result);
+      }
+      if (result.startsWith("TIE")) {
+        computerScore++;
+        usersScore++;
+        console.log(result);
       }
     } else {
       count--;
       continue;
     }
-    console.log(count);
   }
 
-  return usersScore > computerScore ? "You WON!!" : "You LOSE";
+  return usersScore === computerScore
+    ? "TIE"
+    : usersScore > computerScore
+    ? "You WON!!"
+    : "You LOSE";
 };
 
-game();
+// game();
+alert(
+  `${game()} \n YOUR SCORE: ${usersScore} Computer's Score : ${computerScore}`
+);
