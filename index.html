@@ -2,123 +2,65 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rock Paper Scissors</title>
-    <script src="./public/js.js" defer></script>
+    <title>Document</title>
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap");
+
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
-      h1,
-      h2,
-      h3,
-      h4 {
-        text-transform: capitalize;
-        margin-bottom: 1rem;
-        line-height: 1.25;
-      }
-      .backdrop {
-        position: fixed;
-        inset: 0;
-        background-color: rgba(0, 0, 0, 0.521);
-      }
-      .modal {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        width: 80%;
-        min-width: 15rem;
-        max-width: 40rem;
-        height: 30rem;
-        min-height: 15rem;
-        max-height: 80vh;
-        transform: translate(-50%, -50%);
-        background-color: #fff;
-        border-radius: 12px;
-        box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.737);
-        z-index: 100;
-        text-align: center;
-      }
-      button {
-        padding: 1rem 2rem;
-        cursor: pointer;
-        border-radius: 11px;
-        border: none;
-        transition: all 0.3s;
-        margin-top: 1rem;
-        /* text-align: center; */
-      }
-      button:hover {
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.562);
-        scale: 1.01;
-      }
-      .btn-modal {
-        bottom: 5%;
-        transform: translateX(-50%);
-        position: absolute;
-      }
-      h2 {
-        text-align: center;
-        margin-top: 2rem;
-      }
-      .score-container {
-        width: 7rem;
-        margin-left: auto;
-        margin-right: 2rem;
-        font-size: 2rem;
-        font-weight: bold;
-      }
-      ul {
-        list-style-type: none;
+
+      html {
+        font-size: 62.5%;
       }
 
-      form {
-        width: 90%;
-        max-width: 30rem;
+      .container {
         margin-inline: auto;
-        padding: 1rem;
-        text-align: center;
-        background-color: #ccc;
-        margin-bottom: 3rem;
+        max-width: 60rem;
       }
-      form input {
-        margin-top: 1rem;
-        font: inherit;
-        font-size: 1.5rem;
-        display: block;
-        margin-inline: auto;
-        padding: 0.5rem;
-        /* text-align: center; */
+      .site-logo {
+        text-align: center;
+        font-size: 5.2rem;
+        font-family: "Dancing Script", cursive;
+        margin-block-start: 1rem;
+      }
+      .game-stats {
+        display: flex;
+        gap: 2rem;
+        font-size: 1.8rem;
+        text-transform: capitalize;
+        justify-content: end;
+      }
+      .game-stats span {
+        font-weight: 600;
+        margin-left: 0.5rem;
       }
     </style>
+    <script src="./resource/js/index1.js" defer></script>
   </head>
   <body>
-    <!-- <div class="backdrop" data-backdrop="backdrop"></div>
-    <div class="modal" data-modal="modal">
-      <h2>How to play</h2>
-      <ul>
-        <li>You have 5 numbers of tries</li>
-        <li>Your options are rock, paper, scissors</li>
-        <li>after pick your option click on select</li>
-      </ul>
-      <button class="btn-modal" data-modal-btn="modal-btn">
-        Click here to Play
-      </button>
+    <div class="container">
+      <header class="main-header">
+        <h1 class="site-logo">Rock Paper Scissors</h1>
+
+        <div class="game-stats">
+          <div class="win-count">win <span>0</span></div>
+          <div class="lose-count">lose <span>0</span></div>
+        </div>
+      </header>
+
+      <main>
+        <section class="game-section">
+          <div class="player-choice">
+            <button data-player-choice="rock">Rock</button>
+            <button data-player-choice="paper">Paper</button>
+            <button data-player-choice="scissor">Scissors</button>
+          </div>
+        </section>
+      </main>
     </div>
-    <h2>Lets Play ROCK PAPER SCISSORS</h2>
-    <div class="score-container">
-      <p>
-        Score:
-        <span class="actual-score">0</span>
-      </p>
-    </div>
-    <form data-form="form">
-      <label for="userInput"> Enter Your Pick!</label>
-      <input type="text" name="input" id="userInput" />
-      <button type="submit">Select</button>
-    </form> -->
   </body>
 </html>
