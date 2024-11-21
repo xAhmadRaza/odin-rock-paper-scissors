@@ -16,7 +16,11 @@
       html {
         font-size: 62.5%;
       }
-
+      body {
+        overflow-y: auto;
+        overflow-x: hidden;
+        width: 100vw;
+      }
       .container {
         margin-inline: auto;
         max-width: 60rem;
@@ -28,37 +32,328 @@
         margin-block-start: 1rem;
       }
       .game-stats {
+        margin-block-start: 1rem;
         display: flex;
         gap: 2rem;
         font-size: 1.8rem;
         text-transform: capitalize;
         justify-content: end;
       }
+      .round {
+        flex-grow: 1;
+      }
+      .game-section {
+        display: grid;
+        place-items: center;
+        margin-block-start: 4rem;
+        height: 60vh;
+      }
+      .game-menu {
+        display: grid;
+        font-family: "Dancing Script", cursive;
+        place-content: center;
+        gap: 2rem;
+
+        width: 20rem;
+        border-radius: 50%;
+        height: 20rem;
+        transition: all 1s ease-in;
+      }
+      .game-menu.left__slider {
+        /* animation: slideToLeft 1s ease-in forwards; */
+
+        transform: translateX(-100vw) scale(0);
+        opacity: 0;
+        height: 0;
+        width: 0;
+
+        pointer-events: none;
+        background-color: #7c3aed;
+        color: white;
+      }
+      .game-menu button {
+        font: inherit;
+        width: 100%;
+        display: block;
+        font-size: 3.5rem;
+        font-weight: 800;
+        border: none;
+        background: inherit;
+        cursor: pointer;
+        transition: all 0.1s ease-in-out;
+      }
+      .game-menu button:hover {
+        scale: 1.1;
+        color: #7c3aed;
+      }
       .game-stats span {
         font-weight: 600;
         margin-left: 0.5rem;
+      }
+
+      .back-btn {
+        position: absolute;
+        top: 18%;
+        right: 28%;
+        transform: translateX(-100%);
+        background: none;
+        border: none;
+        width: 4rem;
+        height: 4rem;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: #ed3a3a;
+        fill: white;
+        opacity: 0;
+        pointer-events: none;
+        font-size: 2rem;
+        cursor: pointer;
+        transform-origin: center;
+        transition: all 0.2s;
+      }
+      .back-btn:active {
+        scale: 0.9;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.396);
+      }
+      .back-btn.show {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .game-menu button:active {
+        transform: scale(0.9);
+      }
+      .player-choice {
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(0);
+        position: relative;
+        left: 100vw;
+        transition: all 1s ease-in;
+      }
+
+      .player-choice.slide-from-right {
+        /* animation: slideFromRight 1s ease-in forwards; */
+        left: 0%;
+        /* right: 0%; */
+        transform: scale(1);
+        opacity: 1;
+
+        pointer-events: auto;
+      }
+
+      .slide-from-left {
+        /* animation: slideFromLeft 1s ease-in forwards; */
+      }
+      .player-choice button {
+        font-family: "Dancing Script", cursive;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        padding-block: 0.5rem;
+        padding-inline: 1.5rem;
+        font-size: 3.8rem;
+        font-weight: 800;
+        border: none;
+        border-radius: 11px;
+        background: inherit;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .player-choice span {
+        margin-inline-start: 1.2rem;
+      }
+      .player-choice button:hover {
+        background-color: #7c3aed95;
+        scale: 1.1;
+      }
+      .player-choice button:active {
+        scale: 1;
+      }
+      .game-logs {
+        position: relative;
+        margin-block-start: 4rem;
+        background-color: rgba(0, 0, 0, 0.17);
+        height: 150px;
+        width: 100%;
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(0);
+        right: 100vw;
+        overflow: auto;
+        border-radius: 11px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+        font-size: 2rem;
+        padding: 1rem 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        transition: all 1s ease-in;
+      }
+      .game-logs.slide-from-left {
+        right: 0%;
+        transform: scale(1);
+        opacity: 1;
+
+        pointer-events: auto;
+      }
+      .overlay {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: none;
+        pointer-events: none;
+        z-index: 9999999;
+      }
+      .overlay.show {
+        display: block;
+        pointer-events: auto;
+      }
+      .model {
+        background-color: white;
+        width: 40vw;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 11px;
+        padding: 2rem 3rem;
+        gap: 2rem;
+        display: none;
+        pointer-events: none;
+        z-index: 9999999999;
+      }
+      .model.show {
+        display: grid;
+
+        pointer-events: auto;
+      }
+      .model-text {
+        font-size: 2rem;
+        text-align: center;
+      }
+      .model-btn {
+        /* justify-self: center;s */
+        font-size: 2rem;
+        background-color: #7c3aed;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 11px;
+        cursor: pointer;
+        transition: all 0.1s;
+        place-self: center;
+      }
+      .model-btn:active {
+        scale: 0.9;
+      }
+      @keyframes slideToLeft {
+        to {
+          transform: translateX(-100vw) scale(0);
+          opacity: 0;
+          height: 0;
+          width: 0;
+
+          pointer-events: none;
+          background-color: #7c3aed;
+          color: white;
+        }
+      }
+      @keyframes slideFromRight {
+        to {
+          left: 0%;
+          /* right: 0%; */
+          transform: scale(1);
+          opacity: 1;
+
+          pointer-events: auto;
+        }
+      }
+      @keyframes slideFromLeft {
+        to {
+          right: 0%;
+          transform: scale(1);
+          opacity: 1;
+
+          pointer-events: auto;
+        }
       }
     </style>
     <script src="./resource/js/index1.js" defer></script>
   </head>
   <body>
+    <div class="overlay">
+      <div class="model"></div>
+    </div>
     <div class="container">
       <header class="main-header">
         <h1 class="site-logo">Rock Paper Scissors</h1>
 
         <div class="game-stats">
-          <div class="win-count">win <span>0</span></div>
-          <div class="lose-count">lose <span>0</span></div>
+          <div data-game="round" class="round">
+            Round <span class="round-number">1</span>
+          </div>
+
+          <div data-game="player-score" class="win-count">
+            win <span>0</span>
+          </div>
+          <div data-game="computer-score" class="lose-count">
+            loses <span>0</span>
+          </div>
         </div>
+
+        <button game-data="back-btn" class="back-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 256 256"
+          >
+            <path
+              d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"
+            ></path>
+          </svg>
+        </button>
       </header>
 
       <main>
         <section class="game-section">
-          <div class="player-choice">
-            <button data-player-choice="rock">Rock</button>
-            <button data-player-choice="paper">Paper</button>
-            <button data-player-choice="scissor">Scissors</button>
+          <div class="game-menu">
+            <button class="start-btn">Start</button>
+            <button data-game="reset-btn" class="reset-btn">Reset</button>
+            <button class="history-btn">History</button>
           </div>
+          <div data-game="game-player-choices" class="player-choice">
+            <button data-player-choice="rock">
+              <img
+                src="./resource/image/rock-Photoroom.png"
+                alt="Rock image"
+                width="50"
+                height="50"
+              /><span> Rock </span>
+            </button>
+            <button data-player-choice="paper">
+              <img
+                src="./resource/image/paper-Photoroom.png"
+                alt="paper img"
+                width="50"
+                height="50"
+              /><span> Paper </span>
+            </button>
+            <button data-player-choice="scissor">
+              <img
+                src="./resource/image/Scissors.png"
+                alt=""
+                width="50"
+                height="50"
+              /><span> Scissors </span>
+            </button>
+          </div>
+          <div data-game="game-logs" class="game-logs"></div>
         </section>
       </main>
     </div>

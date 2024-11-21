@@ -70,3 +70,5 @@
 
 // print (`Final Score: computer: ${computerScore} || player ${humanScore}`);
 // End
+
+// is outdated and does not work with the UI-RPS
