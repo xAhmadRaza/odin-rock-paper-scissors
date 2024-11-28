@@ -49,11 +49,11 @@ const playRound = (
   if (computerSelection == humanSelection) {
     //      print "game tied"
     console.log("game tied");
-    computerScore++;
-    playerScore++;
+    // computerScore++;
+    // playerScore++;
     roundTied++;
 
-    gameTiedEl.textContent = `${roundTied}`;
+    roundTiedEl.textContent = `${roundTied}`;
     logDataEl.textContent = `${new Date().getHours()}:${new Date().getMinutes()}: Round ${round}- Game Tied`;
     gameLogsEl.appendChild(logDataEl);
   }
@@ -85,10 +85,13 @@ const playRound = (
   }
 
   console.log(computerScore, playerScore);
-  if (computerScore == MAX_SCORE || playerScore == MAX_SCORE) {
+  if (
+    +computerScore + roundTied == MAX_SCORE ||
+    +playerScore + roundTied == MAX_SCORE
+  ) {
     const model = document.querySelector(".model");
     showModel(model);
-    gameOver(model, computerScore == 5 ? "You Lose" : "You Won");
+    gameOver(model, computerScore + roundTied == 5 ? "You Lose" : "You Won");
   }
 };
 // End Function
@@ -132,7 +135,7 @@ function resetGame() {
   round = 1;
   roundTied = 0;
   roundEl.textContent = `${round}`;
-
+  roundTiedEl.textContent = `${roundTied}`;
   playerScoreEl.textContent = `${playerScore}`;
   computerScoreEl.textContent = `${computerScore}`;
   gameStartBtnEl.textContent = "Start";
@@ -157,7 +160,7 @@ const computerScoreEl = document.querySelector(
   "[data-game='computer-score'] > span"
 );
 
-const gameTiedEl = document.querySelector("[data-game='score-tied'] > span");
+const roundTiedEl = document.querySelector("[data-game='score-tied'] > span");
 
 const roundEl = document.querySelector("[data-game='round'] > span");
 const gamePlayerChoicesContainerEl = document.querySelector(
