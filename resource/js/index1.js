@@ -53,10 +53,7 @@ const playRound = (
     playerScore++;
     roundTied++;
 
-    // playerScoreEl.textContent = `${playerScore}`;
-    // computerScoreEl.textContent = `${computerScore}`;
     gameTiedEl.textContent = `${roundTied}`;
-
     logDataEl.textContent = `${new Date().getHours()}:${new Date().getMinutes()}: Round ${round}- Game Tied`;
     gameLogsEl.appendChild(logDataEl);
   }
@@ -88,7 +85,7 @@ const playRound = (
   }
 
   console.log(computerScore, playerScore);
-  if (computerScore == +5 || playerScore == +5) {
+  if (computerScore == MAX_SCORE || playerScore == MAX_SCORE) {
     const model = document.querySelector(".model");
     showModel(model);
     gameOver(model, computerScore == 5 ? "You Lose" : "You Won");
@@ -142,6 +139,7 @@ function resetGame() {
   gameLogsEl.innerHTML = "";
 }
 
+const MAX_SCORE = 5;
 // define computerScore:0
 let computerScore = 0;
 // define playerScore:0
@@ -215,13 +213,7 @@ const playGame = () => {
 
 // End Function
 
-// Start
-// FOR count <=5 do
-for (let count = 1; count <= 2; count++) {
-  // call playRound()
-}
 playGame();
-// end FOR
 
 console.log(`Final Score: computer: ${computerScore} || player ${playerScore}`);
 // End
