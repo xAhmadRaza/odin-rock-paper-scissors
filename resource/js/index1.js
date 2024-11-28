@@ -51,9 +51,11 @@ const playRound = (
     console.log("game tied");
     computerScore++;
     playerScore++;
+    roundTied++;
 
-    playerScoreEl.textContent = `${playerScore}`;
-    computerScoreEl.textContent = `${computerScore}`;
+    // playerScoreEl.textContent = `${playerScore}`;
+    // computerScoreEl.textContent = `${computerScore}`;
+    gameTiedEl.textContent = `${roundTied}`;
 
     logDataEl.textContent = `${new Date().getHours()}:${new Date().getMinutes()}: Round ${round}- Game Tied`;
     gameLogsEl.appendChild(logDataEl);
@@ -131,6 +133,7 @@ function resetGame() {
   computerScore = 0;
   playerScore = 0;
   round = 1;
+  roundTied = 0;
   roundEl.textContent = `${round}`;
 
   playerScoreEl.textContent = `${playerScore}`;
@@ -144,6 +147,7 @@ let computerScore = 0;
 // define playerScore:0
 let playerScore = 0;
 // define Round:0
+let roundTied = 0;
 let round = 1;
 const overlay = document.querySelector(".overlay");
 const gameLogsEl = document.querySelector("[data-game='game-logs']");
@@ -154,6 +158,8 @@ const playerScoreEl = document.querySelector(
 const computerScoreEl = document.querySelector(
   "[data-game='computer-score'] > span"
 );
+
+const gameTiedEl = document.querySelector("[data-game='score-tied'] > span");
 
 const roundEl = document.querySelector("[data-game='round'] > span");
 const gamePlayerChoicesContainerEl = document.querySelector(
@@ -187,7 +193,6 @@ const playGame = () => {
   });
 
   gamePlayerChoicesContainerEl.addEventListener("click", (ev) => {
-    round++;
     roundEl.textContent = `${round}`;
 
     // define computerSelection: call getComputerChoice
@@ -203,6 +208,8 @@ const playGame = () => {
       computerScoreEl,
       gameLogsEl
     );
+
+    round++;
   });
 };
 
